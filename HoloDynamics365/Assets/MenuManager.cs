@@ -8,12 +8,13 @@ using System.IO;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity.SpatialMapping;
 
-public class MenuManager : MonoBehaviour, ISpeechHandler
+public class MenuManager : MonoBehaviour
 {
 
     // Initiate variables 
     private GameObject parent;
     private InteractionReceiver receiver;
+    private Texture2D urlLogo;
     private int counter = 0;
     private string[] dummyData = { "PXL", "Scapta", "Microsoft", "UHasselt", "PXL", "Scapta", "Microsoft", "UHasselt", "PXL" };
 
@@ -28,8 +29,8 @@ public class MenuManager : MonoBehaviour, ISpeechHandler
         parent.GetComponent<TapToPlace>().enabled = false;
         parent.GetComponent<BoxCollider>().enabled = false;
         parent.GetComponent<InteractionReceiver>().enabled = true;
-        GameObject.Find("Screen").SetActive(true);
-        GameObject.Find("Video").SetActive(true);
+        GameObject.Find("Screen").SetActive(false);
+        GameObject.Find("Video").SetActive(false);
 
         createNewMenu(dummyData, "ProductMenu");
     }
@@ -58,32 +59,6 @@ public class MenuManager : MonoBehaviour, ISpeechHandler
         parent.transform.localPosition = new Vector3(0f, 0f, 2f);
     }
 
-    void ISpeechHandler.OnSpeechKeywordRecognized(SpeechEventData eventData)
-    {
-        //if (eventData.RecognizedText.Equals("Move Menu"))
-        //{
-        //    parent.GetComponent<TapToPlace>().enabled = true;
-        //    parent.GetComponent<BoxCollider>().enabled = true;
-
-        //}
-        //else if (eventData.RecognizedText.Equals("Done Moving"))
-        //{
-        //    parent.GetComponent<TapToPlace>().enabled = false;
-        //    parent.GetComponent<BoxCollider>().enabled = false;
-
-        //}
-        //else if (eventData.RecognizedText.Equals("Reset Menu"))
-        //{
-        //    parent.transform.localPosition = new Vector3(0f, 0f, 2f);
-        //}
-        //else
-        //{
-        //    return;
-        //}
-
-        //eventData.Use();
-    }
-
     private static Texture2D LoadFromImage(string path)
     {
         Texture2D tex = null;
@@ -108,12 +83,12 @@ public class MenuManager : MonoBehaviour, ISpeechHandler
     {
         parent = this.gameObject;
         Vector3 currentLocation = transform.localPosition;
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.localScale = new Vector3(0.5f, 0.5f, 1f);
 
         // Setting up ObjectCollection on parent -- takes care of placement in relation to other gameObjects
         ObjectCollection buttonCollection = parent.GetComponent<ObjectCollection>();
-        buttonCollection.CellWidth = 0.5f;
-        buttonCollection.CellHeight = 0.5f;
+        buttonCollection.CellWidth = 0.45f;
+        buttonCollection.CellHeight = 0.45f;
         buttonCollection.SurfaceType = SurfaceTypeEnum.Plane;
         buttonCollection.Rows = 1;
 
@@ -130,33 +105,28 @@ public class MenuManager : MonoBehaviour, ISpeechHandler
             button.name = name;
             Debug.Log(button.name);
 
-            button.transform.localScale = new Vector3(3f, 3f, 1f);
+            button.transform.localScale = new Vector3(transform.localScale.x * 3f, transform.localScale.x * 3f, 1f);
 
             // Change the button text
             CompoundButtonText buttonText = button.GetComponent<CompoundButtonText>();
             buttonText.Text = name;
             buttonText.Size = 75;
             buttonText.OverrideSize = true;
-
             buttonText.Style = FontStyle.Bold;
 
+            StartCoroutine(loadImageFromUrl("https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/grotere_versie/1314_logo_pxl_bol.png", button));
 
             // Creating the Texture2D from the logo
-            Texture2D logo = (Texture2D)Resources.Load(name);
-            float aspect_ratio = CalculateAspectRatio(logo.width, logo.height);
-
-            Debug.Log(aspect_ratio);
+            //Debug.Log(aspect_ratio);
 
             // Change the button icon to the appropriate logo
-            CompoundButtonIcon buttonIcon = button.GetComponent<CompoundButtonIcon>();
-            buttonIcon.OverrideIcon = true;
-            buttonIcon.IconName = "Ready";
-            buttonIcon.iconOverride = logo;
+            //CompoundButtonIcon buttonIcon = button.GetComponent<CompoundButtonIcon>();
+            //buttonIcon.OverrideIcon = true;
+            //buttonIcon.IconName = "Ready";
+            //buttonIcon.iconOverride = urlLogo;
 
             // Change button to appropriate scale -- Might wanna do this based on resolution
-            GameObject iconObject = button.transform.Find("UIButtonSquareIcon").gameObject;
-            // iconObject.transform.localScale.Set(2f, 2f, 1);
-            buttonIcon.IconMeshFilter.transform.localScale = new Vector3(2.5f, 2.5f / aspect_ratio, 1f); // what if width < height
+            // what if width < height
 
             // Initialize Receiver
             receiver = parent.GetComponent<InteractionReceiver>();
@@ -192,5 +162,23 @@ public class MenuManager : MonoBehaviour, ISpeechHandler
         }
         Debug.Log(transform.childCount);
         transform.DetachChildren();
+    }
+
+    IEnumerator loadImageFromUrl(string url, GameObject button)
+    {
+        urlLogo = new Texture2D(4, 4, TextureFormat.DXT1, false);
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            www.LoadImageIntoTexture(urlLogo);
+            CompoundButtonIcon icon = button.GetComponent<CompoundButtonIcon>();
+            icon.iconOverride = urlLogo;
+            icon.OverrideIcon = true;
+            icon.IconName = "Ready";
+
+            float aspect_ratio = CalculateAspectRatio(urlLogo.width, urlLogo.height);
+
+            icon.IconMeshFilter.transform.localScale = new Vector3(2.5f, 2.5f / aspect_ratio, 1f);
+        }
     }
 }

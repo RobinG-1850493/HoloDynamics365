@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{03f94cb5-d28b-48d5-9fea-4f13c7dbd853}</ProjectGuid>
+    <ProjectGuid>{eb9e670c-d81d-46de-a862-5bb573e24fbe}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssemblyCSharpWSA</RootNamespace>
@@ -1880,6 +1880,12 @@
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\MenuManager.cs">
       <Link>MenuManager.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\pdfConversion.cs">
+      <Link>pdfConversion.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\testScript.cs">
+      <Link>testScript.cs</Link>
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\VideoBehaviour.cs">
       <Link>VideoBehaviour.cs</Link>

@@ -37,11 +37,9 @@ namespace HoloToolkit.Unity.Examples
             {
                 if(obj.name == "Scapta")
                 {
-                    VideoClip clip = Resources.Load("Waarom Scapta365.mp4") as VideoClip;
-                    GameObject.Find("Video").GetComponent<VideoPlayer>().clip = clip;
-                    GameObject.Find("Video").GetComponent<VideoPlayer>().Play();
                     GameObject.Find("Screen").SetActive(true);
                     GameObject.Find("Video").SetActive(true);
+                    GameObject.Find("Video").GetComponent<VideoBehaviour>().PlayVideo("http://techslides.com/demos/sample-videos/small.mp4");
                 }
                 Debug.Log(obj.name);
             }

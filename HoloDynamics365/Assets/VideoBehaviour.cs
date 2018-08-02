@@ -5,11 +5,9 @@ using UnityEngine.Video;
 
 public class VideoBehaviour : MonoBehaviour {
 
-    public Material playButtonMaterial;
-    public Material pauseButtonMaterial;
-    public Renderer screenRenderer;
-
     private VideoPlayer videoPlayer;
+    private VideoSource videoSource;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -18,25 +16,39 @@ public class VideoBehaviour : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        StartCoroutine(PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void PlayPause()
+    public IEnumerator PlayVideo(string url)
     {
-        if (videoPlayer.isPlaying)
+        videoPlayer = gameObject.GetComponent<VideoPlayer>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+
+        videoPlayer.playOnAwake = true;
+        audioSource.playOnAwake = true;
+
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = url;
+
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+
+        videoPlayer.EnableAudioTrack(0, true);
+        videoPlayer.SetTargetAudioSource(0, audioSource);
+
+        videoPlayer.Prepare();
+
+        while (!videoPlayer.isPrepared)
         {
-            videoPlayer.Pause();
-            screenRenderer.material = playButtonMaterial;
+            Debug.Log("Preparing Video");
+            yield return null;
         }
-        else
-        {
-            videoPlayer.Play();
-            screenRenderer.material = pauseButtonMaterial;
-        }
+
+        videoPlayer.Play();
+        audioSource.Play();
     }
 }

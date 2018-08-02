@@ -237,20 +237,13 @@ MonoBehaviour:
   SmoothPositionLerpRatio: 0.5
   SmoothRotationLerpRatio: 0.5
   SmoothScaleLerpRatio: 0.5
---- !u!114 &199365332
-MonoBehaviour:
+--- !u!362 &199365332
+WorldAnchor:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 199365325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f122ca4ae6b527e4798205becf9a0550, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnchorDebugText: {fileID: 0}
-  ShowDetailedLogs: 0
-  PersistentAnchors: 1
+  serializedVersion: 2
 --- !u!1 &263014310
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,14 +336,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
   m_TargetAudioSources:
-  - {fileID: 0}
+  - {fileID: 440680793}
   m_DirectAudioVolumes:
   - 1
-  m_Url: https://drive.google.com/open?id=1KA5zms5qr__wkQsAQc7IQ8o4qKybZvWC
+  m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -378,14 +371,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440680789}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c898a842b9c33864cab1260933906d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButtonMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
-  pauseButtonMaterial: {fileID: 0}
-  screenRenderer: {fileID: 0}
 --- !u!82 &440680793
 AudioSource:
   m_ObjectHideFlags: 0
@@ -726,6 +716,7 @@ GameObject:
   - component: {fileID: 1864080244}
   - component: {fileID: 1864080240}
   - component: {fileID: 1864080238}
+  - component: {fileID: 1864080239}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -831,6 +822,13 @@ MonoBehaviour:
   AnchorDebugText: {fileID: 0}
   ShowDetailedLogs: 0
   PersistentAnchors: 1
+--- !u!362 &1864080239
+WorldAnchor:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864080232}
+  serializedVersion: 2
 --- !u!114 &1864080240
 MonoBehaviour:
   m_ObjectHideFlags: 0
