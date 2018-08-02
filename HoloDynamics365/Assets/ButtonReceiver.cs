@@ -10,7 +10,7 @@ namespace HoloToolkit.Unity.Examples
 {
     public class ButtonReceiver : InteractionReceiver
     {
-        private string[] dummyData = { "PXL", "Scapta", "Microsoft", "UHasselt", "PXL", "Scapta", "Microsoft", "Microsoft"};
+        private string[] dummyData = { "PXL", "Scapta", "Microsoft", "UHasselt", "PXL", "UHasselt", "Microsoft", "Microsoft"};
 
         protected override void FocusEnter(GameObject obj, PointerSpecificEventData eventData)
         {
@@ -32,14 +32,17 @@ namespace HoloToolkit.Unity.Examples
                 transform.localScale = new Vector3(0, 0, 0);
                 gameObject.GetComponent<MenuManager>().destroyCurrentMenu();
                 gameObject.GetComponent<MenuManager>().createNewMenu(dummyData, "CustomerMenu");
+                transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             }
             else if (gameObject.tag == "CustomerMenu")
             {
+                Debug.Log(obj.name);
                 if(obj.name == "Scapta")
                 {
-                    GameObject.Find("Screen").SetActive(true);
-                    GameObject.Find("Video").SetActive(true);
-                    GameObject.Find("Video").GetComponent<VideoBehaviour>().PlayVideo("http://techslides.com/demos/sample-videos/small.mp4");
+                    Debug.Log("Made it");
+                    Debug.Log(GameObject.Find("Screen").name);
+                    GameObject.Find("Screen").transform.localScale = new Vector3(1f, 0.58f, 0.01f);
+                    StartCoroutine(GameObject.Find("Video").GetComponent<VideoBehaviour>().PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
                 }
                 Debug.Log(obj.name);
             }

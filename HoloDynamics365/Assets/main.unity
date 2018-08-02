@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 199365331}
   - component: {fileID: 199365330}
   - component: {fileID: 199365332}
+  - component: {fileID: 199365333}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -175,7 +176,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 199365325}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.01}
@@ -194,8 +195,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 199365325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 3}
-  m_LocalScale: {x: -1, y: -0.58, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0.4, z: 3}
+  m_LocalScale: {x: 1, y: -0.58, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultGazeDistance: 5
   PlaceParentOnTap: 0
-  ParentGameObjectToPlace: {fileID: 199365325}
+  ParentGameObjectToPlace: {fileID: 0}
   IsBeingPlaced: 0
   AllowMeshVisualizationControl: 0
   UseColliderCenter: 0
@@ -244,6 +245,22 @@ WorldAnchor:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 199365325}
   serializedVersion: 2
+--- !u!114 &199365333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 199365325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb034688bcf84b4bb52b3a3310868c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hostTransform: {fileID: 199365329}
+  boundingBoxPrefab: {fileID: 0}
+  manipulationMode: 2
+  rotationConstraint: 0
+  enableOneHandMovement: 0
 --- !u!1 &263014310
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,11 +360,11 @@ VideoPlayer:
   - {fileID: 440680793}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: http://techslides.com/demos/sample-videos/small.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 0
@@ -717,6 +734,7 @@ GameObject:
   - component: {fileID: 1864080240}
   - component: {fileID: 1864080238}
   - component: {fileID: 1864080239}
+  - component: {fileID: 1864080241}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -773,7 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultGazeDistance: 5
   PlaceParentOnTap: 0
-  ParentGameObjectToPlace: {fileID: 1864080232}
+  ParentGameObjectToPlace: {fileID: 0}
   IsBeingPlaced: 0
   AllowMeshVisualizationControl: 0
   UseColliderCenter: 0
@@ -843,6 +861,22 @@ MonoBehaviour:
   interactables: []
   Targets: []
   lockFocus: 0
+--- !u!114 &1864080241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864080232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb034688bcf84b4bb52b3a3310868c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hostTransform: {fileID: 0}
+  boundingBoxPrefab: {fileID: 0}
+  manipulationMode: 2
+  rotationConstraint: 0
+  enableOneHandMovement: 0
 --- !u!65 &1864080242
 BoxCollider:
   m_ObjectHideFlags: 0

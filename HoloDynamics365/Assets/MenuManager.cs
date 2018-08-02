@@ -29,10 +29,11 @@ public class MenuManager : MonoBehaviour
         parent.GetComponent<TapToPlace>().enabled = false;
         parent.GetComponent<BoxCollider>().enabled = false;
         parent.GetComponent<InteractionReceiver>().enabled = true;
-        GameObject.Find("Screen").SetActive(false);
-        GameObject.Find("Video").SetActive(false);
+        GameObject.Find("Screen").transform.localScale = new Vector3(0f, 0f, 0f);
+        GameObject.Find("Screen").GetComponent<TapToPlace>().enabled = true;
 
         createNewMenu(dummyData, "ProductMenu");
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     public void PlacementOn()
@@ -40,9 +41,9 @@ public class MenuManager : MonoBehaviour
         parent.GetComponent<TapToPlace>().enabled = true;
         parent.GetComponent<InteractionReceiver>().enabled = false;
         GameObject screen = GameObject.Find("Screen");
-        screen.SetActive(true);
+        screen.transform.localScale = new Vector3(1f, 0.58f, 1);
         screen.GetComponent<TapToPlace>().enabled = true;
-
+        screen.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void PlacementOff()
@@ -50,8 +51,9 @@ public class MenuManager : MonoBehaviour
         parent.GetComponent<BoxCollider>().enabled = false;
         parent.GetComponent<InteractionReceiver>().enabled = true;
         GameObject screen = GameObject.Find("Screen");
-        screen.SetActive(false);
+        screen.transform.localScale = new Vector3(0, 0, 0);
         screen.GetComponent<TapToPlace>().enabled = false;
+        screen.GetComponent<BoxCollider>().enabled = false;
     }
 
     public void ResetPlacement()
@@ -83,7 +85,9 @@ public class MenuManager : MonoBehaviour
     {
         parent = this.gameObject;
         Vector3 currentLocation = transform.localPosition;
-        transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        Vector3 currentScale = transform.localScale;
+        transform.localScale = new Vector3(0f, 0f, 0f);
 
         // Setting up ObjectCollection on parent -- takes care of placement in relation to other gameObjects
         ObjectCollection buttonCollection = parent.GetComponent<ObjectCollection>();
@@ -105,7 +109,7 @@ public class MenuManager : MonoBehaviour
             button.name = name;
             Debug.Log(button.name);
 
-            button.transform.localScale = new Vector3(transform.localScale.x * 3f, transform.localScale.x * 3f, 1f);
+            //StartCoroutine(loadImageFromUrl("https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/grotere_versie/1314_logo_pxl_bol.png", button));
 
             // Change the button text
             CompoundButtonText buttonText = button.GetComponent<CompoundButtonText>();
@@ -114,16 +118,21 @@ public class MenuManager : MonoBehaviour
             buttonText.OverrideSize = true;
             buttonText.Style = FontStyle.Bold;
 
-            StartCoroutine(loadImageFromUrl("https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/grotere_versie/1314_logo_pxl_bol.png", button));
-
+            Texture2D urlLogo = new Texture2D(0,0);
+            urlLogo = Resources.Load(name) as Texture2D;
             // Creating the Texture2D from the logo
             //Debug.Log(aspect_ratio);
 
+            float aspect_ratio = CalculateAspectRatio(urlLogo.width, urlLogo.height);
+
+
             // Change the button icon to the appropriate logo
-            //CompoundButtonIcon buttonIcon = button.GetComponent<CompoundButtonIcon>();
-            //buttonIcon.OverrideIcon = true;
-            //buttonIcon.IconName = "Ready";
-            //buttonIcon.iconOverride = urlLogo;
+            CompoundButtonIcon buttonIcon = button.GetComponent<CompoundButtonIcon>();
+            buttonIcon.OverrideIcon = true;
+            buttonIcon.IconName = "Ready";
+            buttonIcon.iconOverride = urlLogo;
+
+            buttonIcon.IconMeshFilter.transform.localScale = new Vector3(2.5f, 2.5f / aspect_ratio, 1f);
 
             // Change button to appropriate scale -- Might wanna do this based on resolution
             // what if width < height
@@ -139,10 +148,11 @@ public class MenuManager : MonoBehaviour
             Debug.Log(parent.transform.childCount);
             Debug.Log(button.name);
 
+            button.transform.localScale = new Vector3(currentScale.x * 3f, currentScale.x * 3f, 1f);
             counter++;
         }
         buttonCollection.UpdateCollection();
-        transform.localPosition = currentLocation;
+        transform.localPosition = currentLocation;  
     }
 
     public void destroyCurrentMenu()
@@ -170,6 +180,7 @@ public class MenuManager : MonoBehaviour
         using (WWW www = new WWW(url))
         {
             yield return www;
+  
             www.LoadImageIntoTexture(urlLogo);
             CompoundButtonIcon icon = button.GetComponent<CompoundButtonIcon>();
             icon.iconOverride = urlLogo;

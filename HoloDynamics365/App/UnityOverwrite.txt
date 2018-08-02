@@ -7,7 +7,7 @@
 # Default behavior is to never overwrite files
 HoloDynamics365.sln: modified
 GeneratedProjects\UWP\Assembly-CSharp\project.json: 1D02BC64BAC0D041019673A1C4C51737
-HoloDynamics365\App.cs: 91A96BAAA22117F5063BA32ECC109598
+HoloDynamics365\App.cs: modified
 HoloDynamics365\HoloDynamics365.csproj: modified
 HoloDynamics365\HoloDynamics365.csproj.user: modified
 HoloDynamics365\Package.appxmanifest: CF8EE2AB56783D6291DADAB66525DE63

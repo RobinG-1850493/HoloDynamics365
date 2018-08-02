@@ -16,7 +16,7 @@ public class VideoBehaviour : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
+        //StartCoroutine(PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
     }
 	
 	// Update is called once per frame
