@@ -42,7 +42,9 @@ namespace HoloToolkit.Unity.Examples
                     Debug.Log("Made it");
                     Debug.Log(GameObject.Find("Screen").name);
                     GameObject.Find("Screen").transform.localScale = new Vector3(1f, 0.58f, 0.01f);
-                    StartCoroutine(GameObject.Find("Video").GetComponent<VideoBehaviour>().PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
+                    //StartCoroutine(GameObject.Find("Video").GetComponent<VideoBehaviour>().PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
+                    GameObject.Find("YoutubePlayer").GetComponent<SimplePlayback>().videoId = "cb-bQ9soIE0";
+                    GameObject.Find("YoutubePlayer").GetComponent<SimplePlayback>().Play();
                 }
                 Debug.Log(obj.name);
             }

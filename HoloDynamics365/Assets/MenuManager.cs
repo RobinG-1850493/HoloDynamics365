@@ -29,8 +29,8 @@ public class MenuManager : MonoBehaviour
         parent.GetComponent<TapToPlace>().enabled = false;
         parent.GetComponent<BoxCollider>().enabled = false;
         parent.GetComponent<InteractionReceiver>().enabled = true;
-        GameObject.Find("Screen").transform.localScale = new Vector3(0f, 0f, 0f);
-        GameObject.Find("Screen").GetComponent<TapToPlace>().enabled = true;
+        //GameObject.Find("Screen").transform.localScale = new Vector3(0f, 0f, 0f);
+        //GameObject.Find("Screen").GetComponent<TapToPlace>().enabled = true;
 
         createNewMenu(dummyData, "ProductMenu");
         transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
@@ -40,7 +40,7 @@ public class MenuManager : MonoBehaviour
     {
         parent.GetComponent<TapToPlace>().enabled = true;
         parent.GetComponent<InteractionReceiver>().enabled = false;
-        GameObject screen = GameObject.Find("Screen");
+        GameObject screen = GameObject.Find("YoutubePlayer");
         screen.transform.localScale = new Vector3(1f, 0.58f, 1);
         screen.GetComponent<TapToPlace>().enabled = true;
         screen.GetComponent<BoxCollider>().enabled = true;
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
     {
         parent.GetComponent<BoxCollider>().enabled = false;
         parent.GetComponent<InteractionReceiver>().enabled = true;
-        GameObject screen = GameObject.Find("Screen");
+        GameObject screen = GameObject.Find("YoutubePlayer");
         screen.transform.localScale = new Vector3(0, 0, 0);
         screen.GetComponent<TapToPlace>().enabled = false;
         screen.GetComponent<BoxCollider>().enabled = false;

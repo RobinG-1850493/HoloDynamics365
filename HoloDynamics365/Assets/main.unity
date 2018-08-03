@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &199365326
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 263014312}
   - component: {fileID: 263014311}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PdfObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,7 +335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!328 &440680790
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -561,6 +561,83 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &755708696
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114771579337881132, guid: ec3b8d9d26d263f46b62636be639bd54,
+        type: 2}
+      propertyPath: videoId
+      value: cb-bQ9soIE0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33540836903609992, guid: ec3b8d9d26d263f46b62636be639bd54,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323970140674588, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 64808942526188720, guid: ec3b8d9d26d263f46b62636be639bd54,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 1229350622160358, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
+      propertyPath: m_Name
+      value: YoutubePlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ec3b8d9d26d263f46b62636be639bd54, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &872062607
 GameObject:
