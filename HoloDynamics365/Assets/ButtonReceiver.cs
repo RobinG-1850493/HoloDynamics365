@@ -31,7 +31,7 @@ namespace HoloToolkit.Unity.Examples
             {
                 transform.localScale = new Vector3(0, 0, 0);
                 gameObject.GetComponent<MenuManager>().destroyCurrentMenu();
-                gameObject.GetComponent<MenuManager>().createNewMenu(dummyData, "CustomerMenu");
+                gameObject.GetComponent<MenuManager>().CreateCustomerMenu(gameObject.name).GetAwaiter();
                 transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             }
             else if (gameObject.tag == "CustomerMenu")

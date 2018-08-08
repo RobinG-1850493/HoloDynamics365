@@ -7,6 +7,11 @@ using HoloToolkit.Unity.Receivers;
 using System.IO;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity.SpatialMapping;
+using System.Net.Http;
+using System.Net;
+using System.Threading.Tasks;
+using HoloDynamics365.Models;
+using Assets;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,7 +24,7 @@ public class MenuManager : MonoBehaviour
     private string[] dummyData = { "PXL", "Scapta", "Microsoft", "UHasselt", "PXL", "Scapta", "Microsoft", "UHasselt", "PXL" };
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
         // Assigning parent object
         parent = this.gameObject;
@@ -32,8 +37,7 @@ public class MenuManager : MonoBehaviour
         //GameObject.Find("Screen").transform.localScale = new Vector3(0f, 0f, 0f);
         //GameObject.Find("Screen").GetComponent<TapToPlace>().enabled = true;
 
-        createNewMenu(dummyData, "ProductMenu");
-        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        CreateProductMenu().GetAwaiter();
     }
 
     public void PlacementOn()
@@ -81,9 +85,10 @@ public class MenuManager : MonoBehaviour
         return aspect_ratio;
     }
 
-    public void createNewMenu(string[] dummyData, string menuType)
+    public async Task CreateProductMenu()
     {
-        parent = this.gameObject;
+        List<Product> products = await DataController.getProducts();
+        parent = gameObject;
         Vector3 currentLocation = transform.localPosition;
         transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         Vector3 currentScale = transform.localScale;
@@ -96,46 +101,34 @@ public class MenuManager : MonoBehaviour
         buttonCollection.SurfaceType = SurfaceTypeEnum.Plane;
         buttonCollection.Rows = 1;
 
-        gameObject.tag = menuType;
+        gameObject.tag = "ProductMenu";
 
         parent.GetComponent<BoxCollider>().size = new Vector3(buttonCollection.CellWidth * dummyData.Length, buttonCollection.CellHeight - 0.2f, 0.1f);
 
-        foreach (string name in dummyData)
+        foreach (Product p in products)
         {
             Debug.Log(name);
 
             // Instantiate the prefab button
             GameObject button = Instantiate(Resources.Load("HolographicButton")) as GameObject;
-            button.name = name;
+            button.name = p.productId;
             Debug.Log(button.name);
 
-            //StartCoroutine(loadImageFromUrl("https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/grotere_versie/1314_logo_pxl_bol.png", button));
+            StartCoroutine(loadImageFromUrl(p.productLogo, button));
 
             // Change the button text
             CompoundButtonText buttonText = button.GetComponent<CompoundButtonText>();
-            buttonText.Text = name;
+            buttonText.Text = p.productNaam;
             buttonText.Size = 75;
             buttonText.OverrideSize = true;
             buttonText.Style = FontStyle.Bold;
 
-            Texture2D urlLogo = new Texture2D(0,0);
-            urlLogo = Resources.Load(name) as Texture2D;
+            //Texture2D urlLogo = new Texture2D(0, 0);
+            //urlLogo = Resources.Load(name) as Texture2D;
             // Creating the Texture2D from the logo
             //Debug.Log(aspect_ratio);
 
             float aspect_ratio = CalculateAspectRatio(urlLogo.width, urlLogo.height);
-
-
-            // Change the button icon to the appropriate logo
-            CompoundButtonIcon buttonIcon = button.GetComponent<CompoundButtonIcon>();
-            buttonIcon.OverrideIcon = true;
-            buttonIcon.IconName = "Ready";
-            buttonIcon.iconOverride = urlLogo;
-
-            buttonIcon.IconMeshFilter.transform.localScale = new Vector3(2.5f, 2.5f / aspect_ratio, 1f);
-
-            // Change button to appropriate scale -- Might wanna do this based on resolution
-            // what if width < height
 
             // Initialize Receiver
             receiver = parent.GetComponent<InteractionReceiver>();
@@ -146,13 +139,77 @@ public class MenuManager : MonoBehaviour
             // Add the button to the menu
             button.transform.SetParent(parent.transform);
             Debug.Log(parent.transform.childCount);
-            Debug.Log(button.name);
+            Debug.Log(p.productLogo);
 
             button.transform.localScale = new Vector3(currentScale.x * 3f, currentScale.x * 3f, 1f);
             counter++;
         }
         buttonCollection.UpdateCollection();
-        transform.localPosition = currentLocation;  
+        transform.localPosition = currentLocation;
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+    }
+
+    public async Task CreateCustomerMenu(string id)
+    {
+        List<Account> accounts = await DataController.getCustomers(id);
+        parent = gameObject;
+        Vector3 currentLocation = transform.localPosition;
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        Vector3 currentScale = transform.localScale;
+        transform.localScale = new Vector3(0f, 0f, 0f);
+
+        // Setting up ObjectCollection on parent -- takes care of placement in relation to other gameObjects
+        ObjectCollection buttonCollection = parent.GetComponent<ObjectCollection>();
+        buttonCollection.CellWidth = 0.45f;
+        buttonCollection.CellHeight = 0.45f;
+        buttonCollection.SurfaceType = SurfaceTypeEnum.Plane;
+        buttonCollection.Rows = 1;
+
+        gameObject.tag = "CustomerMenu";
+
+        parent.GetComponent<BoxCollider>().size = new Vector3(buttonCollection.CellWidth * dummyData.Length, buttonCollection.CellHeight - 0.2f, 0.1f);
+
+        foreach (Account a in accounts)
+        {
+            Debug.Log(name);
+
+            // Instantiate the prefab button
+            GameObject button = Instantiate(Resources.Load("HolographicButton")) as GameObject;
+            button.name = a.id;
+            Debug.Log(button.name);
+
+            //StartCoroutine(loadImageFromUrl(p.productLogo, button));
+
+            // Change the button text
+            CompoundButtonText buttonText = button.GetComponent<CompoundButtonText>();
+            buttonText.Text = a.naam;
+            buttonText.Size = 75;
+            buttonText.OverrideSize = true;
+            buttonText.Style = FontStyle.Bold;
+
+            //Texture2D urlLogo = new Texture2D(0, 0);
+            //urlLogo = Resources.Load(name) as Texture2D;
+            // Creating the Texture2D from the logo
+            //Debug.Log(aspect_ratio);
+
+            //float aspect_ratio = CalculateAspectRatio(urlLogo.width, urlLogo.height);
+
+            // Initialize Receiver
+            receiver = parent.GetComponent<InteractionReceiver>();
+
+            // Add button to the receiver
+            receiver.interactables.Add(button);
+
+            // Add the button to the menu
+            button.transform.SetParent(parent.transform);
+            Debug.Log(parent.transform.childCount);
+
+            button.transform.localScale = new Vector3(currentScale.x * 3f, currentScale.x * 3f, 1f);
+            counter++;
+        }
+        buttonCollection.UpdateCollection();
+        transform.localPosition = currentLocation;
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     public void destroyCurrentMenu()
