@@ -861,6 +861,9 @@
     <Compile Include="Assets\Models\Account.cs" />
     <Compile Include="Assets\Models\Info.cs" />
     <Compile Include="Assets\Models\Product.cs" />
+    <Compile Include="Assets\OkButton.cs" />
+    <Compile Include="Assets\PersistanceScript.cs" />
+    <Compile Include="Assets\PlayPauseOnTap.cs" />
     <Compile Include="Assets\VideoBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>

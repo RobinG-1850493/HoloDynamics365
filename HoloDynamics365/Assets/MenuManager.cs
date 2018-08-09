@@ -12,6 +12,8 @@ using System.Net;
 using System.Threading.Tasks;
 using HoloDynamics365.Models;
 using Assets;
+using HoloToolkit.UI.Keyboard;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -25,10 +27,16 @@ public class MenuManager : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
+
         // Assigning parent object
         parent = this.gameObject;
         Debug.Log(parent.name);
 
+        PlayerPrefs.SetString("Username", "robin.goos@scapta.com");
+        PlayerPrefs.SetString("Password", "Welcome@Scapta");
+        PlayerPrefs.Save();
+
+        GameObject.Find("Settings").SetActive(true );
         // Disable movement capabillities -- Enable using Voice Commands
         GameObject.Find("MenuObject").GetComponent<TapToPlace>().enabled = false;
         GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = false;
@@ -75,6 +83,7 @@ public class MenuManager : MonoBehaviour
         GameObject.Find("VideoPlayers").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("YoutubePlayer").transform.localScale = new Vector3(0f, 0f, 0f);
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
+        GameObject.Find("Settings").SetActive(false);
     }
 
     // Called by Voice Command : Reset Menu
@@ -115,7 +124,7 @@ public class MenuManager : MonoBehaviour
         parent = gameObject;
 
         // Save position and scale and minize the menu untill loading is done
-        Vector3 currentLocation = GameObject.Find("MenuObject").transform.localPosition;
+        //Vector3 currentLocation = GameObject.Find("MenuObject").transform.localPosition;
         transform.localScale = new Vector3(1f, 1f, 1f);
         Vector3 currentScale = transform.localScale;
         transform.localScale = new Vector3(0f, 0f, 0f);
@@ -174,7 +183,7 @@ public class MenuManager : MonoBehaviour
         buttonCollection.UpdateCollection();
 
         // Scale the menu
-        GameObject.Find("MenuObject").transform.localPosition = currentLocation;
+        //GameObject.Find("MenuObject").transform.localPosition = currentLocation;
         transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
@@ -187,7 +196,7 @@ public class MenuManager : MonoBehaviour
         parent = gameObject;
 
         // Save position and scale and minize the menu untill loading is done
-        Vector3 currentLocation = GameObject.Find("MenuObject").transform.localPosition;
+        //Vector3 currentLocation = GameObject.Find("MenuObject").transform.localPosition;
         transform.localScale = new Vector3(1f, 1f, 1f);
         Vector3 currentScale = transform.localScale;
         transform.localScale = new Vector3(0f, 0f, 0f);
@@ -244,7 +253,7 @@ public class MenuManager : MonoBehaviour
         buttonCollection.UpdateCollection();
 
         // Scale the menu
-        GameObject.Find("MenuObject").transform.localPosition = currentLocation;
+        //GameObject.Find("MenuObject").transform.localPosition = currentLocation;
         transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
@@ -294,5 +303,24 @@ public class MenuManager : MonoBehaviour
             // Scale the icon
             icon.IconMeshFilter.transform.localScale = new Vector3(2.5f, 2.5f / aspect_ratio, 1f);
         }
+    }
+
+    public void SaveUser()
+    {
+        string username = GameObject.Find("Username").GetComponentInChildren<Text>().text;
+        string password = GameObject.Find("Password").GetComponentInChildren<Text>().text;
+
+        PlayerPrefs.SetString("Username", username);
+        PlayerPrefs.SetString("Password", password);
+        PlayerPrefs.Save();
+    }
+
+    public void showSettings()
+    {
+        GameObject.Find("Settings").SetActive(true);
+    }
+    public void closeSettings()
+    {
+        GameObject.Find("Settings").SetActive(false);
     }
 }

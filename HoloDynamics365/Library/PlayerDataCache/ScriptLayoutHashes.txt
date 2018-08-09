@@ -87,6 +87,7 @@ e6fccba36520b6f5f4d5fedef26a9841 Assembly-CSharp.dll:HoloToolkit.Unity.Billboard
 8e9f5b922979e9356a11d2ee2b32ee60 Assembly-CSharp.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.VideoBehaviour
 b3823de281e428cf0dba1153469ff4ab Assembly-CSharp.dll:HoloToolkit.Unity.SphereBasedTagalong
+7000360c28a9dd6e5169290e63863ba5 Assembly-CSharp.dll:.OkButton
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -471,6 +472,7 @@ f1dddc522eb4451a473352e2116e6cff Assembly-CSharp.dll:HoloToolkit.Unity.InputModu
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:HoloToolkit.Unity.UsabilityScaler
 77fc19578ec6b3c5048a9606add67fc9 Assembly-CSharp.dll:HoloToolkit.Unity.UX.LineStripMesh
 843980f90e915da29bb6f3eadb5d5d57 Assembly-CSharp.dll:HoloToolkit.Unity.SimpleTagalong
+7000360c28a9dd6e5169290e63863ba5 Assembly-CSharp.dll:.PlayPauseOnTap
 ca8435a0247c955e3fc71ac883949806 Assembly-CSharp.dll:HoloToolkit.Examples.UX.LoadingAnimation
 61f8aab2c3edaf29b06c5fd8624fb8f3 Assembly-CSharp.dll:HoloToolkit.Unity.HeadsetAdjustment
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityStandardAssets.Utility.FPSCounter
@@ -562,3 +564,4 @@ d2a2bd333db22f480a8589e167314ecc Vuforia.UnityExtensions.dll:Vuforia.UserDefined
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 15bea26698002c6c4a3087131232ce5c Vuforia.UnityExtensions.dll:Vuforia.WordBehaviour
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PersistanceScript

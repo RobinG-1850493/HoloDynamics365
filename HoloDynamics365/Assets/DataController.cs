@@ -16,11 +16,13 @@ namespace Assets
 {
     public class DataController
     {
-        // Returns a list of all products present in the crm
-        public static async Task<List<Product>> getProducts()
+    // Returns a list of all products present in the crm
+    public static async Task<List<Product>> getProducts()
         {
             List<Product> products = null;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://172.31.99.58/HoloDynamicsAPI/api/product"));
+            request.Headers["AuthorizationUser"] = PlayerPrefs.GetString("Username");
+            request.Headers["AuthorizationPass"] = PlayerPrefs.GetString("Password");
             HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string json = reader.ReadToEnd();
@@ -33,6 +35,8 @@ namespace Assets
         {
             List<Account> accounts = null;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://172.31.99.58/HoloDynamicsAPI/api/product/" + id));
+            request.Headers["AuthorizationUser"] = PlayerPrefs.GetString("Username");
+            request.Headers["AuthorizationPass"] = PlayerPrefs.GetString("Password");
             HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string json = reader.ReadToEnd();
@@ -45,6 +49,8 @@ namespace Assets
         {
             List<Info> holoInfo = null;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://172.31.99.58/HoloDynamicsAPI/api/info/" + productId + "/" + accountId));
+            request.Headers["AuthorizationUser"] = PlayerPrefs.GetString("Username"); ;
+            request.Headers["AuthorizationPass"] = PlayerPrefs.GetString("Password"); ;
             HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string json = reader.ReadToEnd();

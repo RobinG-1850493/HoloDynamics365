@@ -13,11 +13,11 @@ public class BackReceiver : InteractionReceiver
         // Make sure the Application is ready to create a new menu
         GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = false;
         GameObject.Find("MenuObject").GetComponent<TapToPlace>().enabled = false;
-        GameObject.Find("BackButton").GetComponent<InteractionReceiver>().enabled = true;
         GameObject.Find("Menu").GetComponent<InteractionReceiver>().enabled = true;
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
         GameObject.Find("VideoPlayers").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("YoutubePlayer").transform.localScale = new Vector3(0f, 0f, 0f);
+        GameObject.Find("YoutubePlayer").GetComponent<SimplePlayback>().PlayerPause();
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
 
         // Destroy the current menu and create a new Product menu

@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{b7ec2d1d-25a9-46d5-a66b-bd178e0c2caa}</ProjectGuid>
+    <ProjectGuid>{30d8c1eb-2612-472e-a2c1-006f67aa777e}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssemblyCSharpWSA</RootNamespace>
@@ -2171,6 +2171,15 @@
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\Models\Product.cs">
       <Link>Models\Product.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\OkButton.cs">
+      <Link>OkButton.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\PersistanceScript.cs">
+      <Link>PersistanceScript.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\PlayPauseOnTap.cs">
+      <Link>PlayPauseOnTap.cs</Link>
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\VideoBehaviour.cs">
       <Link>VideoBehaviour.cs</Link>
