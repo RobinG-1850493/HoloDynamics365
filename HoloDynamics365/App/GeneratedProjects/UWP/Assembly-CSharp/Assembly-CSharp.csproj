@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7ccfbf53-7a3b-4404-8ea3-ed47e1f9e2ed}</ProjectGuid>
+    <ProjectGuid>{b7ec2d1d-25a9-46d5-a66b-bd178e0c2caa}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssemblyCSharpWSA</RootNamespace>
@@ -357,6 +357,9 @@
     <SDKReference Include="WindowsTeam, Version=10.0.17134.0"/>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(UnityProjectDir)Assets\BackReceiver.cs">
+      <Link>BackReceiver.cs</Link>
+    </Compile>
     <Compile Include="$(UnityProjectDir)Assets\ButtonReceiver.cs">
       <Link>ButtonReceiver.cs</Link>
     </Compile>
@@ -2163,14 +2166,11 @@
     <Compile Include="$(UnityProjectDir)Assets\Models\Account.cs">
       <Link>Models\Account.cs</Link>
     </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\Models\Info.cs">
+      <Link>Models\Info.cs</Link>
+    </Compile>
     <Compile Include="$(UnityProjectDir)Assets\Models\Product.cs">
       <Link>Models\Product.cs</Link>
-    </Compile>
-    <Compile Include="$(UnityProjectDir)Assets\pdfConversion.cs">
-      <Link>pdfConversion.cs</Link>
-    </Compile>
-    <Compile Include="$(UnityProjectDir)Assets\testScript.cs">
-      <Link>testScript.cs</Link>
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\VideoBehaviour.cs">
       <Link>VideoBehaviour.cs</Link>

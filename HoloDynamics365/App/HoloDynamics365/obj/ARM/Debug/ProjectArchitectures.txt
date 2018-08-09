@@ -1,0 +1,2 @@
+C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;arm
+C:\HoloDynamics\HoloDynamics365\App\HoloDynamics365\HoloDynamics365.csproj;arm

@@ -1,6 +1,6 @@
 PlaneFinding.dll
 MicStreamSelector.dll
 GpuTiming.dll
-gsdll32.dll
 SharingClient.dll
 SpatialUnderstanding.dll
+gsdll64.dll

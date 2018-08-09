@@ -14,16 +14,6 @@ public class VideoBehaviour : MonoBehaviour {
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    // Use this for initialization
-    void Start () {
-        //StartCoroutine(PlayVideo("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public IEnumerator PlayVideo(string url)
     {
         videoPlayer = gameObject.GetComponent<VideoPlayer>();

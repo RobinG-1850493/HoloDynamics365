@@ -574,7 +574,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 80bd7642534dd501
+  metroCertificateNotAfter: 007f1b810a4ed501
   metroApplicationDescription: HoloDynamics365
   wsaImages: {}
   metroTileShortName: HoloDynamics365

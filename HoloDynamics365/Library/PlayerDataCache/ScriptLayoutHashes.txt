@@ -87,7 +87,6 @@ e6fccba36520b6f5f4d5fedef26a9841 Assembly-CSharp.dll:HoloToolkit.Unity.Billboard
 8e9f5b922979e9356a11d2ee2b32ee60 Assembly-CSharp.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.VideoBehaviour
 b3823de281e428cf0dba1153469ff4ab Assembly-CSharp.dll:HoloToolkit.Unity.SphereBasedTagalong
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.testScript
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -135,6 +134,7 @@ dfbbd0f200dcccb2189b8a6462d69d7c Assembly-CSharp.dll:HoloToolkit.Unity.UX.LineUn
 6c156248975c65e334daa4cbfba64bd1 Assembly-CSharp.dll:UnityStandardAssets.Utility.TimedObjectActivator
 8644983781391a1a0c05940eaa565fef Assembly-CSharp.dll:HoloToolkit.Unity.SpatialMapping.RemoteMeshTarget
 064f0a952de99350d72c261f966c7de6 Assembly-CSharp.dll:HoloToolkit.Sharing.Utilities.AutoJoinSessionAndRoom
+7000360c28a9dd6e5169290e63863ba5 Assembly-CSharp.dll:.BackReceiver
 57de9d606b17762955c771ca8e5c67e4 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.ObjectCursor
 7000360c28a9dd6e5169290e63863ba5 Assembly-CSharp.dll:HoloToolkit.Unity.Examples.ButtonReceiver
 d4463422b1b111b746cad022acbdb5b4 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.GazeManager
@@ -180,7 +180,6 @@ db782f22d720a4e9886ccd9125d81b92 Assembly-CSharp.dll:UnityStandardAssets.Cameras
 8f58a5afc906d3cd31a7c7e94317cc54 Assembly-CSharp.dll:HoloToolkit.Unity.InputModule.MixedRealityTeleport
 ba66ed51a66e14863f51781e69c657ef Assembly-CSharp.dll:HoloToolkit.UI.Keyboard.KeyboardValueKey
 7435024e2eba1739b74aebd6a4d5c8c3 Assembly-CSharp.dll:HoloToolkit.Unity.HoverLight
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.pdfConversion
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 296be13f4be3cfa18e9920cdf7ce02d9 Assembly-CSharp.dll:HoloToolkit.Unity.Buttons.ButtonLocalizedText
 549dafb5e0b8917306ca1eeb3e20dec6 Assembly-CSharp.dll:HoloToolkit.UI.Keyboard.CapsLockHighlight
