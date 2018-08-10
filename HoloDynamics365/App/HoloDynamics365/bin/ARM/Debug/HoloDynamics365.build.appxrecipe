@@ -448,9 +448,6 @@
     <AppxPackagedFile Include="C:\HoloDynamics\HoloDynamics365\App\HoloDynamics365\Data\level0.resS">
       <PackagePath>Data\level0.resS</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\HoloDynamics\HoloDynamics365\App\HoloDynamics365\Data\resources.assets.resS">
-      <PackagePath>Data\resources.assets.resS</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\HoloDynamics\HoloDynamics365\App\HoloDynamics365\Data\sharedassets0.assets.resS">
       <PackagePath>Data\sharedassets0.assets.resS</PackagePath>
     </AppxPackagedFile>

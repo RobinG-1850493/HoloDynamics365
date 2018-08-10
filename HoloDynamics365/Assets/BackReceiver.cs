@@ -17,6 +17,7 @@ public class BackReceiver : InteractionReceiver
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
         GameObject.Find("VideoPlayers").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("YoutubePlayer").transform.localScale = new Vector3(0f, 0f, 0f);
+        GameObject.Find("DocumentViewer").transform.localScale = new Vector3(0f, 0f, 0f);
         GameObject.Find("YoutubePlayer").GetComponent<SimplePlayback>().PlayerPause();
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
 

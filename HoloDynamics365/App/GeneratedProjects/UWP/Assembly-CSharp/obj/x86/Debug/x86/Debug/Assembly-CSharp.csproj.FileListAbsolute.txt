@@ -1,7 +1,6 @@
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\bin\x86\Debug\Assembly-CSharp.dll
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\bin\x86\Debug\Assembly-CSharp.pdb
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\bin\x86\Debug\Assembly-CSharp.pri
-C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\Assembly-CSharp.csprojAssemblyReference.cache
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\Assembly-CSharp.dll
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\Assembly-CSharp.pdb
@@ -16,3 +15,4 @@ C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x8
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\qualifiers.txt
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\qualifiers.txt.intermediate
 C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\obj\x86\Debug\x86\Debug\Assembly-CSharp.csprojAssemblyReference.cache

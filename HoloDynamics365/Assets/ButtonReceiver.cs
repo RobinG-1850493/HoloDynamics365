@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 using Assets.Models;
 using Assets;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
+using System.Collections;
 
 namespace HoloToolkit.Unity.Examples
 {
     public class ButtonReceiver : InteractionReceiver
     {
         private string temp_id = "";
+        public static List<Texture2D> pdfPages = new List<Texture2D>();
+        public static int currentPage { get; set; }
+              
 
         // Handles the inputs of all menu buttons
         protected override void InputUp(GameObject obj, InputEventData eventData)
@@ -51,27 +56,20 @@ namespace HoloToolkit.Unity.Examples
         {
             // Populate the list with holoinfo based on productId and accountId
             List<Info> infoList = await DataController.getHoloInfoByIds(productId, accountId);
-
+            pdfPages.Clear();
             // Iterate through the infoList
             foreach(Info i in infoList)
             {
                 // DummyData for testing
-                i.infoUrl = "https://www.youtube.com/watch?v=_OxUU76eC7k";
-                i.infoType = "798200001";
 
                 // Check what of what type the testimony is (798200000 = Document, 798200001 = Video)
                 if (i.infoType == "798200000")
                 {
-                    Debug.Log("Document");
+                    Document infoDocs = await DataController.getDocumentByInfoId(i.documentid);
 
-                    // Not yet implemented
-                    if (i.infoUrl.ToLower().EndsWith(".pdf"))
+                    foreach(string url in infoDocs.pageUrl)
                     {
-                        // show pdf
-                    }
-                    else
-                    {
-                        // what if wrong link
+                        StartCoroutine(loadImageFromUrl(url));
                     }
                 }
                 else if(i.infoType == "798200001")
@@ -98,6 +96,10 @@ namespace HoloToolkit.Unity.Examples
                         // what if wrong link
                     }
                 }
+                else
+                {
+                    // if no testimony
+                }
             }
         }
 
@@ -108,6 +110,28 @@ namespace HoloToolkit.Unity.Examples
                 new Regex(@"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)")
                 .Match(url);
             return youtubeMatch.Success ? youtubeMatch.Groups[1].Value : string.Empty;
+        }
+
+        IEnumerator loadImageFromUrl(string url)
+        {
+            if (url.ToLower().EndsWith(".jpg"))
+            {
+                Texture2D urlLogo = new Texture2D(4, 4, TextureFormat.DXT1, false);
+                using (WWW www = new WWW(url))
+                {
+                    // Retrieve the image 
+                    yield return www;
+
+                    // Convert the image to a texture
+                    www.LoadImageIntoTexture(urlLogo);
+                    pdfPages.Add(urlLogo);
+
+                    GameObject.Find("PdfView").GetComponent<RawImage>().texture = pdfPages[0];
+
+                    GameObject.Find("DocumentViewer").transform.localScale = new Vector3(0.8f, 0.8f, 1);
+                    currentPage = 0;
+                }
+            }
         }
     }
 }

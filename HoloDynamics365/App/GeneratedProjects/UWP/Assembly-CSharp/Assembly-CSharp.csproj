@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{30d8c1eb-2612-472e-a2c1-006f67aa777e}</ProjectGuid>
+    <ProjectGuid>{724cd33d-f18f-4abd-91d0-9bcb1c4d8510}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssemblyCSharpWSA</RootNamespace>
@@ -2166,11 +2166,17 @@
     <Compile Include="$(UnityProjectDir)Assets\Models\Account.cs">
       <Link>Models\Account.cs</Link>
     </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\Models\Document.cs">
+      <Link>Models\Document.cs</Link>
+    </Compile>
     <Compile Include="$(UnityProjectDir)Assets\Models\Info.cs">
       <Link>Models\Info.cs</Link>
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\Models\Product.cs">
       <Link>Models\Product.cs</Link>
+    </Compile>
+    <Compile Include="$(UnityProjectDir)Assets\NavigationReceiver.cs">
+      <Link>NavigationReceiver.cs</Link>
     </Compile>
     <Compile Include="$(UnityProjectDir)Assets\OkButton.cs">
       <Link>OkButton.cs</Link>

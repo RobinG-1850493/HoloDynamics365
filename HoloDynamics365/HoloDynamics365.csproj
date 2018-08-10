@@ -12,13 +12,16 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>2017.4.6f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -859,8 +862,10 @@
     <Compile Include="Assets\LightShaft\YoutubeSrc\VideoRequest.cs" />
     <Compile Include="Assets\MenuManager.cs" />
     <Compile Include="Assets\Models\Account.cs" />
+    <Compile Include="Assets\Models\Document.cs" />
     <Compile Include="Assets\Models\Info.cs" />
     <Compile Include="Assets\Models\Product.cs" />
+    <Compile Include="Assets\NavigationReceiver.cs" />
     <Compile Include="Assets\OkButton.cs" />
     <Compile Include="Assets\PersistanceScript.cs" />
     <Compile Include="Assets\PlayPauseOnTap.cs" />

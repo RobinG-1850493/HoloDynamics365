@@ -14,6 +14,8 @@ using HoloDynamics365.Models;
 using Assets;
 using HoloToolkit.UI.Keyboard;
 using UnityEngine.UI;
+using HoloToolkit.Unity;
+using HoloToolkit.Unity.InputModule.Utilities.Interactions;
 
 public class MenuManager : MonoBehaviour
 {
@@ -36,11 +38,19 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetString("Password", "Welcome@Scapta");
         PlayerPrefs.Save();
 
-        GameObject.Find("Settings").SetActive(true );
+        PlacementMenu();
+        PlacementOff();
+        showSettings();
+        closeSettings();
+        GameObject.Find("DocumentViewer").transform.localScale = new Vector3(0f, 0f, 1);
         // Disable movement capabillities -- Enable using Voice Commands
         GameObject.Find("MenuObject").GetComponent<TapToPlace>().enabled = false;
         GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = false;
-        GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
+        GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = false;
+        GameObject.Find("VideoPlayers").GetComponent<TwoHandManipulatable>().enabled = false;
+        GameObject.Find("DocumentViewer").GetComponent<TwoHandManipulatable>().enabled = false;
+        GameObject.Find("VideoPlayers").GetComponent<TwoHandManipulatable>().enabled = false;
+        GameObject.Find("DocumentViewer").GetComponent<TapToPlace>().enabled = false;
 
         // enable interactions
         parent.GetComponent<InteractionReceiver>().enabled = true;
@@ -55,12 +65,9 @@ public class MenuManager : MonoBehaviour
         PlacementOff();
         GameObject.Find("MenuObject").GetComponent<TapToPlace>().enabled = true;
         GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = true;
-        GameObject.Find("BackButton").GetComponent<InteractionReceiver>().enabled = false;
-        GameObject.Find("Menu").GetComponent<InteractionReceiver>().enabled = false;
-        GameObject screen = GameObject.Find("YoutubePlayer");
-        screen.transform.localScale = new Vector3(1f, 0.58f, 1);
-        screen.GetComponent<TapToPlace>().enabled = true;
-        screen.GetComponent<BoxCollider>().enabled = true;
+        GameObject.Find("MenuObject").GetComponent<TwoHandManipulatable>().enabled = true;
+        GameObject.Find("MenuObject").GetComponent<InteractionReceiver>().enabled = false;
+        GameObject.Find("MenuObject").GetComponentInChildren<InteractionReceiver>().enabled = false;
     }
 
     // Called by Voice Command : Move Video
@@ -70,6 +77,7 @@ public class MenuManager : MonoBehaviour
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = true;
         GameObject.Find("VideoPlayers").transform.localScale = new Vector3(1, 1, 1);
         GameObject.Find("YoutubePlayer").transform.localScale = new Vector3(1f, 0.58f, 0.01f);
+        GameObject.Find("VideoPlayers").GetComponent<TwoHandManipulatable>().enabled = true;
     }
 
     // Called by Voice Command : Done Moving
@@ -77,20 +85,87 @@ public class MenuManager : MonoBehaviour
     {
         GameObject.Find("MenuObject").GetComponent<BoxCollider>().enabled = false;
         GameObject.Find("MenuObject").GetComponent<TapToPlace>().enabled = false;
-        GameObject.Find("BackButton").GetComponent<InteractionReceiver>().enabled = true;
+        GameObject.Find("MenuObject").GetComponent<InteractionReceiver>().enabled = true;
         GameObject.Find("Menu").GetComponent<InteractionReceiver>().enabled = true;
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
         GameObject.Find("VideoPlayers").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("YoutubePlayer").transform.localScale = new Vector3(0f, 0f, 0f);
         GameObject.Find("VideoPlayers").GetComponent<TapToPlace>().enabled = false;
-        GameObject.Find("Settings").SetActive(false);
+        GameObject.Find("DocumentViewer").GetComponent<TapToPlace>().enabled = false;
+        GameObject.Find("Settings").transform.localScale = new Vector3(0f, 0f, 1);
+        GameObject.Find("DocumentViewer").transform.localScale = new Vector3(0f, 0f, 1);
+        GameObject.Find("MenuObject").GetComponent<TwoHandManipulatable>().enabled = false;
+        GameObject.Find("DocumentViewer").GetComponent<TwoHandManipulatable>().enabled = false;
+        GameObject.Find("VideoPlayers").GetComponent<TwoHandManipulatable>().enabled = false;
+    }
+
+    public void PlacementDocument()
+    {
+        PlacementOff();
+        GameObject.Find("DocumentViewer").GetComponent<TapToPlace>().enabled = true;
+        GameObject.Find("DocumentViewer").transform.localScale = new Vector3(0.8f, 0.8f, 1);
+        GameObject.Find("DocumentViewer").GetComponent<TwoHandManipulatable>().enabled = true;
     }
 
     // Called by Voice Command : Reset Menu
     public void ResetPlacement()
     {
-        GameObject.Find("MenuObject").transform.localPosition = new Vector3(0f, 0f, 2f);
-        GameObject.Find("VideoPlayers").transform.localPosition = new Vector3(0f, 0f, 2f);
+        Transform cameraTransform = CameraCache.Main.transform;
+        Vector3 placementPosition = GetPlacementPosition(cameraTransform.position, cameraTransform.forward, 2.0f);
+
+        if (WorldAnchorManager.Instance != null)
+        {
+            // Add world anchor when object placement is done.
+            WorldAnchorManager.Instance.RemoveAnchor(GameObject.Find("MenuObject"));
+            WorldAnchorManager.Instance.RemoveAnchor(GameObject.Find("VideoPlayers"));
+            WorldAnchorManager.Instance.RemoveAnchor(GameObject.Find("DocumentViewer"));
+        }
+
+        GameObject.Find("MenuObject").transform.position = placementPosition;
+        GameObject.Find("VideoPlayers").transform.position = placementPosition;
+        GameObject.Find("DocumentViewer").transform.position = placementPosition;
+
+        if (WorldAnchorManager.Instance != null)
+        {
+            // Add world anchor when object placement is done.
+            WorldAnchorManager.Instance.AttachAnchor(GameObject.Find("MenuObject"));
+            WorldAnchorManager.Instance.AttachAnchor(GameObject.Find("VideoPlayers"));
+            WorldAnchorManager.Instance.AttachAnchor(GameObject.Find("DocumentViewer"));
+        }
+    }
+
+    private static Vector3 GetPlacementPosition(Vector3 headPosition, Vector3 gazeDirection, float defaultGazeDistance)
+    {
+        RaycastHit hitInfo;
+        if (SpatialMappingRaycast(headPosition, gazeDirection, out hitInfo))
+        {
+            return hitInfo.point;
+        }
+        return GetGazePlacementPosition(headPosition, gazeDirection, defaultGazeDistance);
+    }
+
+    private static Vector3 GetGazePlacementPosition(Vector3 headPosition, Vector3 gazeDirection, float defaultGazeDistance)
+    {
+        if (GazeManager.Instance.HitObject != null)
+        {
+            return GazeManager.Instance.HitPosition;
+        }
+        return headPosition + gazeDirection * defaultGazeDistance;
+    }
+
+    private static bool SpatialMappingRaycast(Vector3 origin, Vector3 direction, out RaycastHit spatialMapHit)
+    {
+        if (SpatialMappingManager.Instance != null)
+        {
+            RaycastHit hitInfo;
+            if (Physics.Raycast(origin, direction, out hitInfo, 30.0f, SpatialMappingManager.Instance.LayerMask))
+            {
+                spatialMapHit = hitInfo;
+                return true;
+            }
+        }
+        spatialMapHit = new RaycastHit();
+        return false;
     }
 
     // Loads in an image from a url and converts it to a Texture2D
@@ -185,6 +260,11 @@ public class MenuManager : MonoBehaviour
         // Scale the menu
         //GameObject.Find("MenuObject").transform.localPosition = currentLocation;
         transform.localScale = new Vector3(1f, 1f, 1f);
+        if(WorldAnchorManager.Instance != null)
+            {
+            // Add world anchor when object placement is done.
+            WorldAnchorManager.Instance.AttachAnchor(GameObject.Find("MenuObject"));
+        }
     }
 
     // Create the customer menu based on productId
@@ -255,6 +335,11 @@ public class MenuManager : MonoBehaviour
         // Scale the menu
         //GameObject.Find("MenuObject").transform.localPosition = currentLocation;
         transform.localScale = new Vector3(1f, 1f, 1f);
+        if (WorldAnchorManager.Instance != null)
+        {
+            // Add world anchor when object placement is done.
+            WorldAnchorManager.Instance.AttachAnchor(GameObject.Find("MenuObject"));
+        }
     }
 
     // This destorys the currently showing menu to make place for a new one
@@ -307,8 +392,8 @@ public class MenuManager : MonoBehaviour
 
     public void SaveUser()
     {
-        string username = GameObject.Find("Username").GetComponentInChildren<Text>().text;
-        string password = GameObject.Find("Password").GetComponentInChildren<Text>().text;
+        string username = GameObject.Find("Username").GetComponent<KeyboardInputField>().text;
+        string password = GameObject.Find("Password").GetComponent<KeyboardInputField>().text;
 
         PlayerPrefs.SetString("Username", username);
         PlayerPrefs.SetString("Password", password);
@@ -317,10 +402,20 @@ public class MenuManager : MonoBehaviour
 
     public void showSettings()
     {
-        GameObject.Find("Settings").SetActive(true);
+        GameObject.Find("Username").GetComponent<KeyboardInputField>().text = PlayerPrefs.GetString("Username");
+        GameObject.Find("Password").GetComponent<KeyboardInputField>().text = PlayerPrefs.GetString("Password");
+        GameObject.Find("Settings").transform.localScale = new Vector3(1f, 1f, 1);
+        GameObject.Find("Settings").GetComponent<SolverConstantViewSize>().enabled = true;
+        GameObject.Find("Settings").GetComponent<SolverHandler>().enabled = true;
+        GameObject.Find("Settings").GetComponent<SolverRadialView>().enabled = true;
     }
     public void closeSettings()
     {
-        GameObject.Find("Settings").SetActive(false);
+        GameObject.Find("Settings").GetComponent<SolverConstantViewSize>().enabled = false;
+        GameObject.Find("Settings").GetComponent<SolverHandler>().enabled = false;
+        GameObject.Find("Settings").GetComponent<SolverRadialView>().enabled = false;
+        GameObject.Find("Settings").transform.localScale = new Vector3(0f, 0f, 1);
+
+        SaveUser();
     }
 }

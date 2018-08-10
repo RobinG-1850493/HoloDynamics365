@@ -360,7 +360,7 @@
 
   <ItemGroup>
     <ProjectReference Include="C:\HoloDynamics\HoloDynamics365\App\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj">
-      <Project>{1d58d082-8186-4807-bcef-636b37cda198}</Project>
+      <Project>{724cd33d-f18f-4abd-91d0-9bcb1c4d8510}</Project>
       <Name>Assembly-CSharp</Name>
       <Private>False</Private>
     </ProjectReference>

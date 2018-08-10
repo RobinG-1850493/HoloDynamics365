@@ -58,5 +58,17 @@ namespace Assets
             return holoInfo;
         }
 
+        public static async Task<Document> getDocumentByInfoId(string infoId)
+        {
+            Document holoDocs = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://172.31.99.58/HoloDynamicsAPI/api/document/" + infoId));
+            request.Headers["AuthorizationUser"] = PlayerPrefs.GetString("Username"); ;
+            request.Headers["AuthorizationPass"] = PlayerPrefs.GetString("Password"); ;
+            HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string json = reader.ReadToEnd();
+            holoDocs = JsonConvert.DeserializeObject<Document>(json);
+            return holoDocs;
+        }
     }
 }

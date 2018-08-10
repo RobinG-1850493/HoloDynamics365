@@ -14,5 +14,6 @@ namespace Assets.Models
         public string productId { get; set; }
         public string accountId { get; set; }
         public string id { get; set; }
+        public string documentid { get; set; }
     }
 }
